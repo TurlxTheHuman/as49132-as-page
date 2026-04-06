@@ -5,10 +5,10 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { label: "Home", href: "#" },
-  { label: "Peering Policy", href: "#peering-policy" },
-  { label: "Locations", href: "#locations" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Peering Policy", href: "/peering-policy" },
+  { label: "Locations", href: "/locations" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function SiteHeader() {
@@ -28,13 +28,13 @@ export function SiteHeader() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-secondary/50"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             <a
               href="https://www.peeringdb.com/asn/49132"
@@ -65,14 +65,14 @@ export function SiteHeader() {
           <nav className="md:hidden py-4 border-t border-border/40">
             <div className="flex flex-col gap-1">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-md transition-colors"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
               <a
                 href="https://www.peeringdb.com/asn/49132"
