@@ -6,8 +6,8 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "Home", href: "/" },
+  { label: "Stats", href: "/stats" },
   { label: "Peering Policy", href: "/peering-policy" },
-  { label: "Locations", href: "/locations" },
   { label: "Contact", href: "/contact" },
 ];
 

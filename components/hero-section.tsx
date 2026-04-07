@@ -12,6 +12,7 @@ function AnimatedCounter({ target }: { target: number }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    if (target === 0) return;
     const duration = 2000;
     const steps = 60;
     const increment = target / steps;
@@ -59,7 +60,7 @@ export function HeroSection({ network, peerCount }: HeroSectionProps) {
           </p>
 
           {/* Quick Links */}
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a
               href={`https://www.peeringdb.com/asn/${network.asn}`}
               target="_blank"
@@ -68,6 +69,7 @@ export function HeroSection({ network, peerCount }: HeroSectionProps) {
             >
               View on PeeringDB
             </a>
+
             {network.website && (
               <a
                 href={network.website}

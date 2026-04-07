@@ -1,21 +1,34 @@
 "use client";
 
-import { Network } from "@/lib/types";
-import { Globe, Server, Wifi, Route } from "lucide-react";
+import { Network, RipeData } from "@/lib/types";
+import { Globe, Server, Wifi, Route, ArrowUp, ArrowDown } from "lucide-react";
 
 interface StatsSectionProps {
   network: Network;
   ixCount: number;
   facilityCount: number;
+  ripeData?: RipeData;
 }
 
-export function StatsSection({ network, ixCount, facilityCount }: StatsSectionProps) {
+export function StatsSection({ network, ixCount, facilityCount, ripeData }: StatsSectionProps) {
   const stats = [
     {
       label: "Global Peers",
-      value: ixCount,
+      value: ripeData?.peers.total || 0,
       icon: Globe,
-      description: "Active peering sessions",
+      description: "Observed BGP neighbours",
+    },
+    {
+      label: "Upstream Peers",
+      value: ripeData?.peers.upstream || 0,
+      icon: ArrowUp,
+      description: "Transit providers",
+    },
+    {
+      label: "Downstream Peers",
+      value: ripeData?.peers.downstream || 0,
+      icon: ArrowDown,
+      description: "Customers",
     },
     {
       label: "Internet Exchanges",
@@ -31,7 +44,7 @@ export function StatsSection({ network, ixCount, facilityCount }: StatsSectionPr
     },
     {
       label: "IPv4 Prefixes",
-      value: network.info_prefixes4 || 0,
+      value: ripeData?.prefixes.ipv4.count || network.info_prefixes4 || 0,
       icon: Route,
       description: "Announced routes",
     },
@@ -40,7 +53,7 @@ export function StatsSection({ network, ixCount, facilityCount }: StatsSectionPr
   return (
     <section className="py-16 border-y border-border bg-card/30">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 mb-4">

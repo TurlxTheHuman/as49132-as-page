@@ -40,3 +40,53 @@ export interface PeeringDBData {
   internetExchanges: InternetExchange[];
   facilities: Facility[];
 }
+
+export interface RipePeer {
+  asn: number;
+  type: string;
+  power: number;
+  v4_peers: number;
+  v6_peers: number;
+}
+
+export interface RipeData {
+  asn: number;
+  holder: string | null;
+  announced: boolean;
+  peers: {
+    total: number;
+    upstream: number;
+    downstream: number;
+    uncertain: number;
+    list: RipePeer[];
+    upstreamList: RipePeer[];
+    downstreamList: RipePeer[];
+  };
+  prefixes: {
+    total: number;
+    ipv4: {
+      count: number;
+      list: string[];
+    };
+    ipv6: {
+      count: number;
+      list: string[];
+    };
+  };
+  routing: {
+    visibility: number;
+    visibilityV6: number;
+    firstSeen: string | null;
+    observedNeighbours: number;
+  };
+  rir: {
+    name: string | null;
+    country: string | null;
+    registration: string | null;
+  };
+  history: Array<{
+    origin: number;
+    prefixes: number;
+  }>;
+  queryTime: string;
+}
