@@ -1,6 +1,7 @@
 import { SiteHeader } from "@/components/site-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, XCircle, Info, FileText } from "lucide-react";
+export const dynamic = 'force-dynamic';
 
 async function getPeeringData() {
   const baseUrl = process.env.VERCEL_URL
